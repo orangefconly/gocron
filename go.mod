@@ -3,6 +3,7 @@ module github.com/ouqiang/gocron
 go 1.12
 
 require (
+	gitee.com/chunanyong/dm v1.8.14
 	github.com/Tang-RoseChild/mahonia v0.0.0-20131226213531-0eef680515cc
 	github.com/Unknwon/com v0.0.0-20190321035513-0fed4efef755 // indirect
 	github.com/cihub/seelog v0.0.0-20170130134532-f561c5e57575
@@ -17,6 +18,7 @@ require (
 	github.com/go-xorm/core v0.6.2
 	github.com/go-xorm/xorm v0.7.1
 	github.com/golang/protobuf v1.3.1
+	github.com/golang/snappy v0.0.4 // indirect
 	github.com/jakecoffman/cron v0.0.0-20190106200828-7e2009c226a5
 	github.com/klauspost/compress v1.5.0 // indirect
 	github.com/klauspost/cpuid v1.2.1 // indirect
@@ -25,10 +27,8 @@ require (
 	github.com/rakyll/statik v0.1.6
 	github.com/sirupsen/logrus v1.4.2
 	github.com/urfave/cli v1.20.0
-	golang.org/x/crypto v0.0.0-20190530122614-20be4c3c3ed5 // indirect
-	golang.org/x/net v0.0.0-20190522155817-f3200d17e092
-	golang.org/x/sync v0.0.0-20181108010431-42b317875d0f // indirect
-	golang.org/x/text v0.3.2 // indirect
+	golang.org/x/net v0.6.0
+	golang.org/x/text v0.14.0 // indirect
 	google.golang.org/genproto v0.0.0-20190530194941-fb225487d101 // indirect
 	google.golang.org/grpc v1.21.0
 	gopkg.in/alexcesaro/quotedprintable.v3 v3.0.0-20150716171945-2caba252f4dc // indirect

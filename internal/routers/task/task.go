@@ -1,6 +1,7 @@
 package task
 
 import (
+	"fmt"
 	"strconv"
 	"strings"
 
@@ -43,6 +44,7 @@ func (f TaskForm) Error(ctx *macaron.Context, errs binding.Errors) {
 	if len(errs) == 0 {
 		return
 	}
+	fmt.Println("err")
 	json := utils.JsonResponse{}
 	content := json.CommonFailure("表单验证失败, 请检测输入")
 

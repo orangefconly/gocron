@@ -135,7 +135,7 @@ export default {
           {min: 6, message: '长度至少6个字符', trigger: 'blur'}
         ]
       },
-      dbList: [
+       dbList: [
         {
           value: 'mysql',
           label: 'MySQL'
@@ -143,11 +143,16 @@ export default {
         {
           value: 'postgres',
           label: 'PostgreSql'
+        },
+        {
+          value: 'dameng',
+          label: 'Dameng'
         }
       ],
       default_ports: {
         'mysql': 3306,
-        'postgres': 5432
+        'postgres': 5432,
+        'dameng': 5236
       }
     }
   },

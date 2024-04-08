@@ -7,6 +7,7 @@ import (
 
 	macaron "gopkg.in/macaron.v1"
 
+	"gitee.com/chunanyong/dm"
 	"github.com/go-macaron/binding"
 	"github.com/go-sql-driver/mysql"
 	"github.com/lib/pq"
@@ -20,7 +21,7 @@ import (
 // 系统安装
 
 type InstallForm struct {
-	DbType               string `binding:"In(mysql,postgres)"`
+	DbType               string `binding:"In(mysql,postgres,dameng)"`
 	DbHost               string `binding:"Required;MaxSize(50)"`
 	DbPort               int    `binding:"Required;Range(1,65535)"`
 	DbUsername           string `binding:"Required;MaxSize(50)"`
@@ -44,6 +45,7 @@ func (f InstallForm) Error(ctx *macaron.Context, errs binding.Errors) {
 
 // 安装
 func Store(ctx *macaron.Context, form InstallForm) string {
+	fmt.Printf("---------------------Store\n")
 	json := utils.JsonResponse{}
 	if app.Installed {
 		return json.CommonFailure("系统已安装!")
@@ -139,6 +141,7 @@ func createAdminUser(form InstallForm) error {
 
 // 测试数据库连接
 func testDbConnection(form InstallForm) error {
+	fmt.Printf("testDbConnection  %#v\n", testDbConnection)
 	var s setting.Setting
 	s.Db.Engine = form.DbType
 	s.Db.Host = form.DbHost
@@ -149,8 +152,10 @@ func testDbConnection(form InstallForm) error {
 	s.Db.Charset = "utf8"
 	db, err := models.CreateTmpDb(&s)
 	if err != nil {
+		fmt.Println(err)
 		return err
 	}
+
 	defer db.Close()
 	err = db.Ping()
 	if s.Db.Engine == "postgres" && err != nil {
@@ -168,7 +173,14 @@ func testDbConnection(form InstallForm) error {
 		}
 		return err
 	}
-
+	if s.Db.Engine == "dameng" && err != nil {
+		fmt.Printf("---------------------dameng\n")
+		dmError, ok := err.(*dm.DmError)
+		if ok && dmError.ErrCode == 6001 {
+			err = errors.New("数据库不存在")
+		}
+		return err
+	}
 	return err
 
 }
