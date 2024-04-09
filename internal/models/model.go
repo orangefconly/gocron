@@ -102,7 +102,6 @@ func CreateDb() *xorm.Engine {
 
 // 创建临时数据库连接
 func CreateTmpDb(setting *setting.Setting) (*xorm.Engine, error) {
-	fmt.Printf("---------------------ok\n")
 	dsn := getDbEngineDSN(setting)
 
 	return xorm.NewEngine(setting.Db.Engine, dsn)
@@ -110,7 +109,6 @@ func CreateTmpDb(setting *setting.Setting) (*xorm.Engine, error) {
 
 // 获取数据库引擎DSN  mysql,sqlite,postgres
 func getDbEngineDSN(setting *setting.Setting) string {
-	fmt.Printf("---------------------ok2\n")
 	engine := strings.ToLower(setting.Db.Engine)
 	dsn := ""
 	switch engine {
@@ -136,7 +134,6 @@ func getDbEngineDSN(setting *setting.Setting) string {
 			setting.Db.Host,
 			setting.Db.Port,
 			setting.Db.Database)
-		fmt.Printf("---------------------oknew\n")
 	}
 
 	return dsn

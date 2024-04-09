@@ -135,7 +135,7 @@ export default {
           {min: 6, message: '长度至少6个字符', trigger: 'blur'}
         ]
       },
-       dbList: [
+      dbList: [
         {
           value: 'mysql',
           label: 'MySQL'

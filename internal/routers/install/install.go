@@ -141,7 +141,6 @@ func createAdminUser(form InstallForm) error {
 
 // 测试数据库连接
 func testDbConnection(form InstallForm) error {
-	fmt.Printf("testDbConnection  %#v\n", testDbConnection)
 	var s setting.Setting
 	s.Db.Engine = form.DbType
 	s.Db.Host = form.DbHost
@@ -152,7 +151,6 @@ func testDbConnection(form InstallForm) error {
 	s.Db.Charset = "utf8"
 	db, err := models.CreateTmpDb(&s)
 	if err != nil {
-		fmt.Println(err)
 		return err
 	}
 
