@@ -10,11 +10,12 @@ import (
 	_ "gitee.com/chunanyong/dm"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/go-xorm/core"
-	"github.com/go-xorm/xorm"
 	_ "github.com/lib/pq"
 	"github.com/ouqiang/gocron/internal/modules/app"
 	"github.com/ouqiang/gocron/internal/modules/logger"
 	"github.com/ouqiang/gocron/internal/modules/setting"
+	"xorm.io/xorm"
+	"xorm.io/xorm/log"
 )
 
 type Status int8
@@ -91,7 +92,7 @@ func CreateDb() *xorm.Engine {
 	// 本地环境开启日志
 	if macaron.Env == macaron.DEV {
 		engine.ShowSQL(true)
-		engine.Logger().SetLevel(core.LOG_DEBUG)
+		engine.Logger().SetLevel(log.LOG_DEBUG)
 	}
 
 	go keepDbAlived(engine)
@@ -128,14 +129,14 @@ func getDbEngineDSN(setting *setting.Setting) string {
 			setting.Db.Host,
 			setting.Db.Port,
 			setting.Db.Database)
-	case "dameng":
+	case "dm":
 		dsn = fmt.Sprintf("dm://%s:%s@%s:%d?%s",
 			setting.Db.User,
 			setting.Db.Password,
 			setting.Db.Host,
 			setting.Db.Port,
 			setting.Db.Database)
-		fmt.Printf("---------------------ok3\n")
+		fmt.Printf("---------------------oknew\n")
 	}
 
 	return dsn

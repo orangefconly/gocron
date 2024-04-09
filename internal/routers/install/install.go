@@ -21,7 +21,7 @@ import (
 // 系统安装
 
 type InstallForm struct {
-	DbType               string `binding:"In(mysql,postgres,dameng)"`
+	DbType               string `binding:"In(mysql,postgres,dm)"`
 	DbHost               string `binding:"Required;MaxSize(50)"`
 	DbPort               int    `binding:"Required;Range(1,65535)"`
 	DbUsername           string `binding:"Required;MaxSize(50)"`
@@ -173,7 +173,7 @@ func testDbConnection(form InstallForm) error {
 		}
 		return err
 	}
-	if s.Db.Engine == "dameng" && err != nil {
+	if s.Db.Engine == "dm" && err != nil {
 		fmt.Printf("---------------------dameng\n")
 		dmError, ok := err.(*dm.DmError)
 		if ok && dmError.ErrCode == 6001 {

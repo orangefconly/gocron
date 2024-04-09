@@ -145,14 +145,14 @@ export default {
           label: 'PostgreSql'
         },
         {
-          value: 'dameng',
+          value: 'dm',
           label: 'Dameng'
         }
       ],
       default_ports: {
         'mysql': 3306,
         'postgres': 5432,
-        'dameng': 5236
+        'dm': 5236
       }
     }
   },
